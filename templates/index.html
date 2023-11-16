@@ -1,18 +1,18 @@
 {% extends 'layout.html' %}
+{% load static %}
 
 {% block content %}
 
 <div class="row">
     <div class="col-12">
-        <h1>Yasin Samet Karaca</h1>
-        <p>Yasin Samet Karaca</p>
+        <h1 class="myHead">Yasin Samet Karaca</h1>
     </div>
 </div>
 <p>
     lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium ad adipisci alias amet
 </p>
 <div class="card" style="width: 18rem;">
-    <img src="https://picsum.photos/200/150" class="card-img-top" alt="...">
+    <img src="{% get_media_prefix  %}tree.jpg" class="card-img-top" alt="...">  <!-- get_media_prefix is for media -->
     <div class="card-body">
         <h5 class="card-title">Card title</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the

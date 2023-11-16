@@ -123,7 +123,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'  # STATIC_URL means where static files will be served
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # STATIC_ROOT means where static files will be collected. Collectstatic komutu ile static dosyaları toplar. Deploy ederken kullanılır.
+
+MEDIA_URL = '/media/'  # MEDIA_URL means where media files will be served
+MEDIA_ROOT = BASE_DIR / 'media'  # MEDIA_ROOT means where media files will be collected
+
+STATICFILES_DIRS = [BASE_DIR / 'static']  # STATICFILES_DIRS means where static files will be collected
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
