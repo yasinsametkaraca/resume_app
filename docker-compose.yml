@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile  # Dockerfile is the name of the file to use for building the image. If omitted, the default is Dockerfile. Same directory as docker-compose.yml
     env_file:
       - resume_app/docker.env # Environment file. Environment variables are defined in this file.
+    volumes:
+      - .:/srv/app  # Mount the current directory on the host to the container. Any changes made in the location of the dot (.) are also made inside the container. Thus, every update is detected and we see the change immediately.
     ports:
       - "0.0.0.0:8000:8000"  # Expose ports ||| Host:Container |||  0.0.0.0 mean localhost . ||| Host port 8000, Container port 8000. |||
     command: python manage.py runserver 0.0.0.0:8000  # Commands to be run after all dockerfile operations are completed.
