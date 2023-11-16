@@ -4,6 +4,8 @@ services:
     build:
       context: .  # Dot (.) mean same directory as where the docker-compose.yml file is located. Context is the build path. Context Specifies where the files are located.
       dockerfile: Dockerfile  # Dockerfile is the name of the file to use for building the image. If omitted, the default is Dockerfile. Same directory as docker-compose.yml
+    env_file:
+      - resume_app/docker.env # Environment file. Environment variables are defined in this file.
     ports:
       - "0.0.0.0:8000:8000"  # Expose ports ||| Host:Container |||  0.0.0.0 mean localhost . ||| Host port 8000, Container port 8000. |||
     command: python manage.py runserver 0.0.0.0:8000  # Commands to be run after all dockerfile operations are completed.

@@ -15,7 +15,7 @@ import environ
 
 
 env = environ.Env(DEBUG=(bool, False),)  # DEBUG degeri env dosyasında varsa onu al yoksa False al
-environ.Env.read_env()  # .env dosyasını oku
+environ.Env.read_env()  # docker.env dosyasını oku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
