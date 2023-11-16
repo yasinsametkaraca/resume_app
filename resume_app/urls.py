@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core.views import index  # index is the name of the function in core/views.py that we want to use
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name='index'),
 ]
