@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .  # Dot (.) mean same directory as where the docker-compose.yml file is located. Context is the build path. Context Specifies where the files are located.
+      dockerfile: Dockerfile  # Dockerfile is the name of the file to use for building the image. If omitted, the default is Dockerfile. Same directory as docker-compose.yml
+    ports:
+      - "0.0.0.0:8000:8000"  # Expose ports ||| Host:Container |||  0.0.0.0 mean localhost . ||| Host port 8000, Container port 8000. |||
+    command: python manage.py runserver 0.0.0.0:8000  # Commands to be run after all dockerfile operations are completed.
+
+volumes:
+  static-data:  # Volume name. Volume means a directory that is outside the container's filesystem. It is a directory that is shared between the host and the container. Static files are stored in this volume.
