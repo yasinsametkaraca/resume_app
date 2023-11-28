@@ -16,9 +16,20 @@ class GeneralSettingAdmin(admin.ModelAdmin):
 @admin.register(ImageSetting)
 class ImageSettingAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'description', 'file', 'created_at', 'updated_at']
-    list_filter = ['id', 'name', 'description', 'file', 'created_at', 'updated_at']
-    search_fields = ['id', 'name', 'description', 'file']
+    list_filter = ['name', 'description', 'file', 'created_at', 'updated_at']
+    search_fields = ['name', 'description', 'file']
     list_editable = ['name', 'description', 'file']
 
     class Meta:
         model = ImageSetting
+
+
+@admin.register(Skill)
+class SkillAdmin(admin.ModelAdmin):
+    list_display = ['id', 'order', 'name', 'description', 'percentage', 'created_at', 'updated_at']
+    list_filter = ['order', 'name', 'description', 'percentage', 'created_at', 'updated_at']
+    search_fields = ['name', 'description', 'percentage']
+    list_editable = ['order', 'name', 'percentage']
+
+    class Meta:
+        model = Skill
