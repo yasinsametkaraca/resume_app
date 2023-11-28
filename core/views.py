@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from core.models import GeneralSetting
+from core.models import GeneralSetting, ImageSetting
 
 
 def index(request):
@@ -14,6 +14,11 @@ def index(request):
     person_about_myself_welcome = get_object_or_404(GeneralSetting, name='person_about_myself_welcome').parameters
     person_about_myself_footer = get_object_or_404(GeneralSetting, name='person_about_myself_footer').parameters
 
+    # images
+    header_logo = ImageSetting.objects.get(name='header_logo').file.url
+    person_image = ImageSetting.objects.get(name='person_image').file.url
+    site_favicon = ImageSetting.objects.get(name='site_favicon').file.url
+
     context = {
         'site_title': site_title,
         'site_keywords': site_keywords,
@@ -25,6 +30,9 @@ def index(request):
         'person_address': person_address,
         'person_about_myself_welcome': person_about_myself_welcome,
         'person_about_myself_footer': person_about_myself_footer,
+        'header_logo': header_logo,
+        'person_image': person_image,
+        'site_favicon': site_favicon,
     }
 
     return render(request, 'index.html', context=context)
