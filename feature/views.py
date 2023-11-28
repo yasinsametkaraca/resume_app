@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-from core.models import GeneralSetting, ImageSetting
+from django.shortcuts import render
 from feature import models as feature_models
 
 
@@ -14,9 +13,12 @@ def index(request):
             else:
                 skills_mapped[elem.skill_type.name].append(elem)
 
+    # experience
+    experiences = feature_models.Experience.objects.all()
+
     context = {
         'skills_mapped': skills_mapped,
-
+        'experiences': experiences,
     }
 
     return render(request, 'index.html', context=context)
