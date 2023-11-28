@@ -1,5 +1,5 @@
 from django.contrib import admin
-from feature.models import Skill, SkillTypes
+from feature.models import Skill, SkillTypes, Experience
 
 
 @admin.register(Skill)
@@ -21,3 +21,14 @@ class SkillTypesAdmin(admin.ModelAdmin):
 
     class Meta:
         model = SkillTypes
+
+
+@admin.register(Experience)
+class ExperienceAdmin(admin.ModelAdmin):
+    list_display = ['id', 'company_name', 'job_position', 'job_location', 'start_date', 'end_date']
+    search_fields = ['company_name', 'job_position', 'job_location', 'start_date', 'end_date']
+    list_editable = ['company_name', 'job_position', 'job_location', 'start_date', 'end_date']
+
+    class Meta:
+        model = Experience
+

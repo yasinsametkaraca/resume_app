@@ -49,3 +49,19 @@ class Skill(AbstractBaseModel):
         verbose_name_plural = 'Skills'
         verbose_name = 'Skill'
         ordering = ('order', )
+
+
+class Experience(AbstractBaseModel):
+    company_name = models.CharField(default='', max_length=255, verbose_name='Company Name', help_text='', blank=True)
+    job_position = models.CharField(default='', max_length=255, verbose_name='Job Position', blank=True)
+    job_location = models.CharField(default='', max_length=255, verbose_name='Job Location', blank=True)
+    start_date = models.DateField(verbose_name='Start Date')  # DateField is used to store date values. Not time, just date.
+    end_date = models.DateField(default=None, verbose_name='End Date', null=True, blank=True)
+
+    def __str__(self):
+        return f'Experience: {self.company_name}'
+
+    class Meta:
+        verbose_name_plural = 'Experiences'
+        verbose_name = 'Experience'
+        ordering = ('-start_date', )
