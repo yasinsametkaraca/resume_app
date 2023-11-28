@@ -72,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.views.layout',
             ],
         },
     },
@@ -132,6 +133,8 @@ MEDIA_URL = '/media/'  # MEDIA_URL means where media files will be served
 MEDIA_ROOT = BASE_DIR / 'media'  # MEDIA_ROOT means where media files will be collected
 
 STATICFILES_DIRS = [BASE_DIR / 'static']  # STATICFILES_DIRS means where static files will be collected
+
+DEFAULT_PNG = STATIC_URL + 'default.png'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
