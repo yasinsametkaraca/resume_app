@@ -11,6 +11,8 @@ def index(request):
     person_about_me = get_object_or_404(GeneralSetting, name='person_about_me').parameters
     person_mail = get_object_or_404(GeneralSetting, name='person_mail').parameters
     person_address = get_object_or_404(GeneralSetting, name='person_address').parameters
+    person_about_myself_welcome = get_object_or_404(GeneralSetting, name='person_about_myself_welcome').parameters
+    person_about_myself_footer = get_object_or_404(GeneralSetting, name='person_about_myself_footer').parameters
 
     context = {
         'site_title': site_title,
@@ -21,6 +23,8 @@ def index(request):
         'person_about_me': person_about_me,
         'person_mail': person_mail,
         'person_address': person_address,
+        'person_about_myself_welcome': person_about_myself_welcome,
+        'person_about_myself_footer': person_about_myself_footer,
     }
 
     return render(request, 'index.html', context=context)
