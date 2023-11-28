@@ -15,3 +15,19 @@ class GeneralSetting(models.Model):
         verbose_name_plural = 'General Settings'
         verbose_name = 'General Setting'
         ordering = ('name', )
+
+
+class ImageSetting(models.Model):
+    name = models.CharField(default='', max_length=250, blank=True, help_text='Name of the setting', verbose_name='Name')
+    description = models.CharField(default='', max_length=250, blank=True, verbose_name='Description')
+    file = models.ImageField(default='', blank=True, null=True, verbose_name='Image', upload_to='images/')
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
+
+    def __str__(self):
+        return f'Image Setting: {self.name}'
+
+    class Meta:
+        verbose_name_plural = 'Image Settings'
+        verbose_name = 'Image Setting'
+        ordering = ('name', )
