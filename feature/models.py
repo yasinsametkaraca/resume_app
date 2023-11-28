@@ -81,3 +81,19 @@ class Education(AbstractBaseModel):
         verbose_name_plural = 'Educations'
         verbose_name = 'Education'
         ordering = ('-start_date', )
+
+
+class SocialMedia(AbstractBaseModel):
+    order = models.IntegerField(default=0, verbose_name='Order', help_text='It will be used to sort social media.')
+    name = models.CharField(default='', max_length=255, verbose_name='Name', help_text='', blank=True)
+    url = models.URLField(default='', max_length=255, verbose_name='URL', help_text='', blank=True)
+    icon = models.CharField(default='', max_length=255, verbose_name='Icon', help_text='', blank=True)
+
+    def __str__(self):
+        return f'Social Media: {self.name}'
+
+    class Meta:
+        verbose_name_plural = 'Social Media'
+        verbose_name = 'Social Media'
+        ordering = ('order', )
+

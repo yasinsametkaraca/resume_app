@@ -26,9 +26,11 @@
                                 <li><a href="javascript:void(0)"><i class="lnr lnr-home"></i> {{person_address}}</a></li>
                             </ul>
                             <ul class="list personal_social">
-                                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="https://www.linkedin.com/in/yasinsametkaraca/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+
+                                {% for social_media in social_medias %}
+                                    <li><a href="{{ social_media.url }}" target="_blank">{{ social_media.icon|safe }}</a></li> <!-- safe fonksiyonu html taglerini aktif hale getirir. -->
+                                {% endfor %}
+
                             </ul>
                         </div>
                     </div>

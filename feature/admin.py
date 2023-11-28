@@ -1,5 +1,5 @@
 from django.contrib import admin
-from feature.models import Skill, SkillTypes, Experience, Education
+from feature.models import Skill, SkillTypes, Experience, Education, SocialMedia
 
 
 @admin.register(Skill)
@@ -41,3 +41,13 @@ class EducationAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Education
+
+
+@admin.register(SocialMedia)
+class SocialMediaAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'url', 'icon']
+    search_fields = ['name', 'url', 'icon']
+    list_editable = ['name', 'url', 'icon']
+
+    class Meta:
+        model = SocialMedia
