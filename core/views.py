@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from core.models import GeneralSetting, ImageSetting
+from django.shortcuts import render, get_object_or_404, redirect
+from core.models import GeneralSetting, Document
 from core import utils
 
 
@@ -22,6 +22,9 @@ def layout(request):
     person_image = utils.get_image('person_image')
     site_favicon = utils.get_image('site_favicon')
 
+    # documents
+    documents = Document.objects.filter(show_on_page=True)
+
     context = {
         'site_title': site_title,
         'site_keywords': site_keywords,
@@ -36,7 +39,11 @@ def layout(request):
         'header_logo': header_logo,
         'person_image': person_image,
         'site_favicon': site_favicon,
+        'documents': documents,
     }
     return context
 
 
+def redirect_urls(request, slug):
+    document = get_object_or_404(Document, slug=slug)
+    return redirect(document.file.url)

@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load template_filters %}
 
 
 {% block banner_area %}
@@ -49,7 +50,7 @@
  <section class="welcome_area p_120" style="padding-bottom: 60px; ">
         <div class="container">
             {% for skill_type, skills in skills_mapped.items %}
-                <span>{{ skill_type }}</span>
+                <span>{{ skill_type|get_object_value_or_none }}</span>
                 <div class="row welcome_inner" style="margin-bottom: 1em; ">
                     {% for skill in skills %}
                         <div class="col-md-3">
@@ -57,7 +58,7 @@
                                 <div class="skill_main">
                                     <div class="skill_item">
                                         <h4>
-                                            {{ skill.name }} <span
+                                            {{ skill.name|get_object_value_or_none }} <span
                                                 class="counter">{{ skill.percentage }}</span>%
                                         </h4>
                                         <div class="progress_br">

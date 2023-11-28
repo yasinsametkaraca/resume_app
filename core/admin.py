@@ -23,3 +23,13 @@ class ImageSettingAdmin(admin.ModelAdmin):
     class Meta:
         model = ImageSetting
 
+
+@admin.register(Document)
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'slug', 'file', 'button_text', 'created_at', 'updated_at']
+    list_filter = ['slug', 'file', 'button_text', 'created_at', 'updated_at']
+    search_fields = ['slug', 'file', 'button_text']
+    list_editable = ['slug', 'file', 'button_text']
+
+    class Meta:
+        model = Document

@@ -1,4 +1,5 @@
 {% load static %}
+{% load template_filters %}
 
         <header class="header_area">
             <div class="main_menu">
@@ -15,22 +16,33 @@
 						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 							<ul class="nav navbar-nav menu_nav ml-auto">
 								<li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-								<li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
-								<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-										<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-									</ul>
-								</li>
-								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-										<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-									</ul>
-								</li>
+<!--								<li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>-->
+<!--								<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>-->
+<!--								<li class="nav-item submenu dropdown">-->
+<!--									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>-->
+<!--									<ul class="dropdown-menu">-->
+<!--										<li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>-->
+<!--										<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>-->
+<!--									</ul>-->
+<!--								</li>-->
+<!--								<li class="nav-item submenu dropdown">-->
+<!--									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>-->
+<!--									<ul class="dropdown-menu">-->
+<!--										<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>-->
+<!--										<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>-->
+<!--									</ul>-->
+<!--								</li>-->
+
+								 {% for document in documents %}
+										<li class="nav-item">
+											<a class="nav-link"
+											   href="{{ document.file|get_document_url }}"
+											   target="_blank">
+												{{ document.button_text }}
+												<i class="fa fa-download" style="margin-left: 6px"></i>
+											</a>
+										</li>
+								 {% endfor %}
 								<li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
 							</ul>
 						</div>

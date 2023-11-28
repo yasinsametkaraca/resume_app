@@ -36,3 +36,17 @@ class ImageSetting(AbstractBaseModel):
         verbose_name = 'Image Setting'
         ordering = ('name', )
 
+
+class Document(AbstractBaseModel):  # This model is used to store documents. For example, CV. Slug means the last part of the URL. For example, "https://www.example.com/blog/this-is-a-slug". In this case, "this-is-a-slug" is the slug.
+    slug = models.SlugField(default='', max_length=250, blank=True, help_text='Slug of the document', verbose_name='Slug')  # SlugField is used to store slugs. Slugs are used to create SEO friendly URLs.
+    file = models.FileField(default='', blank=True, verbose_name='Document', upload_to='documents/')  # This field is used to store the file of the document. For example, "CV.pdf".
+    button_text = models.CharField(default='', max_length=250, blank=True, verbose_name='Button Text')  # This field is used to store the text of the button. For example, "Download CV".
+    show_on_page = models.BooleanField(default=True, verbose_name='Show On Menu')  # This field is used to determine whether to show the document on the page or not.
+
+    def __str__(self):
+        return f'Document: {self.slug}'
+
+    class Meta:
+        verbose_name_plural = 'Documents'
+        verbose_name = 'Document'
+        ordering = ('slug', )
