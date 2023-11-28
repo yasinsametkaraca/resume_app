@@ -65,3 +65,19 @@ class Experience(AbstractBaseModel):
         verbose_name_plural = 'Experiences'
         verbose_name = 'Experience'
         ordering = ('-start_date', )
+
+
+class Education(AbstractBaseModel):
+    school_name = models.CharField(default='', max_length=255, verbose_name='School Name', help_text='', blank=True)
+    faculty = models.CharField(default='', max_length=255, verbose_name='Faculty', blank=True)
+    department = models.CharField(default='', max_length=255, verbose_name='Department', blank=True)
+    start_date = models.DateField(verbose_name='Start Date')  # DateField is used to store date values. Not time, just date.
+    end_date = models.DateField(default=None, verbose_name='End Date', null=True, blank=True)
+
+    def __str__(self):
+        return f'Education: {self.school_name}'
+
+    class Meta:
+        verbose_name_plural = 'Educations'
+        verbose_name = 'Education'
+        ordering = ('-start_date', )

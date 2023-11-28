@@ -15,10 +15,12 @@ def index(request):
 
     # experience
     experiences = feature_models.Experience.objects.all()
+    educations = feature_models.Education.objects.all()
 
     context = {
         'skills_mapped': skills_mapped,
         'experiences': experiences,
+        'educations': educations,
     }
 
     return render(request, 'index.html', context=context)

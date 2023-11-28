@@ -1,5 +1,5 @@
 from django.contrib import admin
-from feature.models import Skill, SkillTypes, Experience
+from feature.models import Skill, SkillTypes, Experience, Education
 
 
 @admin.register(Skill)
@@ -32,3 +32,12 @@ class ExperienceAdmin(admin.ModelAdmin):
     class Meta:
         model = Experience
 
+
+@admin.register(Education)
+class EducationAdmin(admin.ModelAdmin):
+    list_display = ['id', 'school_name', 'faculty', 'department', 'start_date', 'end_date']
+    search_fields = ['school_name', 'department', 'start_date', 'end_date']
+    list_editable = ['school_name', 'faculty', 'department', 'start_date', 'end_date']
+
+    class Meta:
+        model = Education
