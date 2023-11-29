@@ -12,12 +12,15 @@ def contact_form(request):
             email = request.POST.get('email')
             subject = request.POST.get('subject')
             message_text = request.POST.get('message')
+
             Message.objects.create(
                 name=name,
                 email=email,
                 subject=subject,
                 message=message_text
             )
+            # contact_form.send_mail()
+
             message = "Thanks for your message! Contact form sent successfully."
             success = True
         else:

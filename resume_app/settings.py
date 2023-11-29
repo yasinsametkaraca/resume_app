@@ -140,3 +140,11 @@ DEFAULT_PNG = STATIC_URL + 'default.png'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email settings
+# https://docs.djangoproject.com/en/4.1/topics/email/
+vars().update(env.email_url())  # EMAIL_URL means which email service will be used. This is a third party library.
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+
