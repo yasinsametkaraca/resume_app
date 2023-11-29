@@ -60,6 +60,7 @@ $(document).ready(function(){
                     data: $(form).serialize(),
                     url:"/contact/contact_form",
                     success: function(response) {
+                        console.log(response)
                         if(response.success) {
                             $('#contactForm :input').attr('disabled', 'disabled');
                             $('#contactForm').fadeTo( "slow", 1, function() {
