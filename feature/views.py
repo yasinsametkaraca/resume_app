@@ -16,13 +16,11 @@ def index(request):
     # experience
     experiences = feature_models.Experience.objects.all()
     educations = feature_models.Education.objects.all()
-    social_medias = feature_models.SocialMedia.objects.all()
 
     context = {
         'skills_mapped': skills_mapped,
         'experiences': experiences,
         'educations': educations,
-        'social_medias': social_medias,
     }
 
     return render(request, 'index.html', context=context)
