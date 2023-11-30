@@ -24,7 +24,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # copy the requirements.env file to the /tmp directory in container. This file contains the Python packages that are needed to run the application. ./requirements.env is the path to the requirements.env file in the local directory. /tmp/requirements.env is the path to the requirements.env file in the container.
 ADD ./requirements.txt /tmp/requirements.txt
 # install the Python packages in the requirements.env file.
-RUN pip install -r /tmp/requirements.env
+RUN pip install -r /tmp/requirements.txt
 
 # copy the application files to the /app directory in the container. All the application files are in the local directory(.), /srv/app is the path to the /srv/app directory in the container.
 COPY . /srv/app

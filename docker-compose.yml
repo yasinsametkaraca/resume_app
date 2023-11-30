@@ -10,6 +10,8 @@ services:
       - "postgresql-data:/var/lib/postgresql/data"  # Volume name. Volume means a directory that is outside the container's filesystem. It is a directory that is shared between the host and the container. Postgres data is stored in this volume.
     command: -p 5432  # Commands to be run after all dockerfile operations are completed. Bu komut olmadan da app container'ı postgresql'e bağlanabiliyor. Ancak localden bağlanmak için bu komutu yazmak gerekiyor.
   app:
+    container_name: app_resume  # Container name
+    hostname: app_resume  # Container hostname
     build:
       context: .  # Dot (.) mean same directory as where the docker-compose.yml file is located. Context is the build path. Context Specifies where the files are located.
       dockerfile: Dockerfile  # Dockerfile is the name of the file to use for building the image. If omitted, the default is Dockerfile. Same directory as docker-compose.yml
@@ -21,7 +23,17 @@ services:
       - .:/srv/app  # Mount the current directory on the host to the container. Any changes made in the location of the dot (.) are also made inside the container. Thus, every update is detected and we see the change immediately.
     ports:
       - "0.0.0.0:8000:8000"  # Expose ports ||| Host:Container |||  0.0.0.0 mean localhost . ||| Host port 8000, Container port 8000. |||
-    command: python manage.py runserver 0.0.0.0:8000  # Commands to be run after all dockerfile operations are completed.
+    command: gunicorn resume_app.wsgi:application --bind 0.0.0.0:8000  # Gunicorn is a Python WSGI HTTP Server for UNIX. This command is used to run the application. This command is run after all dockerfile operations are completed.
+  nginx:
+    build:
+      context: ./nginx  # Context is the build path. Context Specifies where the files are located.
+      dockerfile: Dockerfile  # Dockerfile is nginx/Dockerfile file.
+    restart: unless-stopped  # Restart the container unless it is explicitly stopped or Docker itself is stopped or restarted.
+    depends_on:
+      - app  # app container'ı ayağa kalktıktan sonra nginx container'ı ayağa kalkacak. Çünkü nginx config dosyasında app container'ına bağlanıyor. (app_resume:8000)
+    ports:
+      - "80:80"  # Nginx default port
+
 
 volumes:
   static-data:  # Volume name. Volume means a directory that is outside the container's filesystem. It is a directory that is shared between the host and the container. Static files are stored in this volume.

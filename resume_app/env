@@ -1,5 +1,5 @@
 DEBUG=True
-SECRET_KEY=django-insecure-g41385k(y2n7l&owmkb7435-*6+=nf4y1hm99d*elj1s+h$#(%
+SECRET_KEY=
 ALLOWED_HOSTS=127.0.0.1,localhost
 CSRF_TRUSTED_ORIGINS=http://*.127.0.0.1,http://*.localhost
 DEFAULT_FROM_EMAIL= gmail
