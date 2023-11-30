@@ -1,4 +1,4 @@
-FROM ngix:1.21-alpine
+FROM nginx:latest
 
 # remove the default configuration file.
 RUN rm /etc/nginx/conf.d/default.conf

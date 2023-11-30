@@ -29,7 +29,16 @@ RUN pip install -r /tmp/requirements.txt
 # copy the application files to the /app directory in the container. All the application files are in the local directory(.), /srv/app is the path to the /srv/app directory in the container.
 COPY . /srv/app
 
+# copy entrypoint.prod.sh
+COPY entrypoint.sh /srv/entrypoint.sh
+RUN sed -i 's/\r$//g' /srv/entrypoint.sh
+# make the entrypoint.sh file executable. For permission reasons, the entrypoint.sh file is not executable by default. This command makes it executable.
+RUN chmod +x /srv/entrypoint.sh
+
 # set the working directory to /srv/app. This is the directory where the application files are located. All the commands that are run in the container will be run in this directory.
 WORKDIR /srv/app
+
+# entrypoint.sh is the entrypoint script. It is used to run the database migrations and start the application.
+ENTRYPOINT ["/srv/entrypoint.sh"]
 
 
