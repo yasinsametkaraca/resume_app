@@ -1,0 +1,14 @@
+DEBUG=True
+SECRET_KEY=django-insecure-g41385k(y2n7l&owmkb7435-*6+=nf4y1hm99d*elj1s+h$#(%
+ALLOWED_HOSTS=127.0.0.1,localhost
+CSRF_TRUSTED_ORIGINS=http://*.127.0.0.1,http://*.localhost
+DEFAULT_FROM_EMAIL= gmail
+EMAIL_URL=smtp+tls://gmail:password@smtp.gmail.com:587
+DATABASE_URL=psql://username:password@postgres:5432/resume_app
+
+POSTGRES_USER=username
+POSTGRES_PASSWORD=password
+POSTGRES_DB=resume_app
+
+
+

@@ -5,18 +5,18 @@ from feature import models as feature_models
 
 
 def layout(request):  # burada paylaşılan herşey için context oluşturulur. Bu context her sayfada kullanılır. Bu sayede her sayfada aynı şeyleri tekrar tekrar yazmamız gerekmez. Burada layout fonksiyonu settings içerisindeki TEMPLATES e eklenir.
-    site_title = GeneralSetting.objects.get(name='site_title').parameters  # get site title from database. site_title.parametre = Yasin Samet KARACA
-    site_keywords = GeneralSetting.objects.get(name='site_keywords').parameters  # get site keywords from database. site_keywords.parametre = Yasin Samet KARACA, Yasin Samet, KARACA
-    site_description = get_object_or_404(GeneralSetting, name='site_description').parameters
+    site_title = utils.get_general_setting_parameter(setting_name='site_title')  # get site title from database. site_title.parametre = Yasin Samet KARACA
+    site_keywords = utils.get_general_setting_parameter(setting_name='site_keywords')  # get site keywords from database. site_keywords.parametre = Yasin Samet KARACA, Yasin Samet, KARACA
+    site_description = utils.get_general_setting_parameter(setting_name='site_description')
 
     # person
-    person_name = get_object_or_404(GeneralSetting, name='person_name').parameters
-    person_job = get_object_or_404(GeneralSetting, name='person_job').parameters
-    person_about_me = get_object_or_404(GeneralSetting, name='person_about_me').parameters
-    person_mail = get_object_or_404(GeneralSetting, name='person_mail').parameters
-    person_address = get_object_or_404(GeneralSetting, name='person_address').parameters
-    person_about_myself_welcome = get_object_or_404(GeneralSetting, name='person_about_myself_welcome').parameters
-    person_about_myself_footer = get_object_or_404(GeneralSetting, name='person_about_myself_footer').parameters
+    person_name = utils.get_general_setting_parameter(setting_name='person_name')
+    person_job = utils.get_general_setting_parameter(setting_name='person_job')
+    person_about_me = utils.get_general_setting_parameter(setting_name='person_about_me')
+    person_mail = utils.get_general_setting_parameter(setting_name='person_mail')
+    person_address = utils.get_general_setting_parameter(setting_name='person_address')
+    person_about_myself_welcome = utils.get_general_setting_parameter(setting_name='person_about_myself_welcome')
+    person_about_myself_footer = utils.get_general_setting_parameter(setting_name='person_about_myself_footer')
 
     # images
     header_logo = utils.get_image('header_logo')
