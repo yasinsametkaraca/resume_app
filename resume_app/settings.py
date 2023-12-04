@@ -148,7 +148,7 @@ else:  # production mode
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'  # This is a third party library. This library is used for AWS S3. STATICFILES_STORAGE means where static files will be collected
 
     AWS_DEFAULT_ACL = 'public-read'  # AWS_DEFAULT_ACL means which permission will be used for AWS S3. Public-read means everyone can read this files. Static files are public files.
-    AWS_S3_BUCKET_PARAMETERS = {
+    AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000'
     }
