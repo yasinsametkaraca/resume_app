@@ -1,5 +1,6 @@
 from django.conf import settings
 from core.models import ImageSetting
+from core.models import GeneralSetting
 
 
 def get_val_in_type(value, val_type):
@@ -37,7 +38,6 @@ def get_image(setting):
 
 
 def get_general_setting_parameter(setting_name, val_type='str'):
-    from core.models import GeneralSetting
     try:
         parameter = GeneralSetting.objects.get(name=setting_name).parameters
     except:
