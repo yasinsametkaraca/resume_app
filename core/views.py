@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from core.models import GeneralSetting, Document
+from core.models import Document
 from core import utils
 from feature import models as feature_models
 
