@@ -1,3 +1,4 @@
+# custom_storages.py dosyasının mantığı şudur: Eğer DEBUG=True ise, yani development moddaysak, static ve media dosyalarını localde tutarız. Eğer DEBUG=False ise, yani production moddaysak, static ve media dosyalarını AWS S3'te tutarız.
 from django.conf import settings
 
 if settings.DEBUG:
@@ -23,7 +24,7 @@ else:
 
 
     class MediaStorage(S3Boto3Storage):
-        location = settings.MEDIA_LOCATION
+        location = settings.MEDIA_LOCATION  # MEDIA_LOCATION means where media files will be collected
         file_overwrite = False
         default_acl = 'public-read'
 
