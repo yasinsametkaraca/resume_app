@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'contact',
-    'feature'
+    'feature',
+    'storages',  # This is a third party library. This library is used for AWS S3.
 ]
 
 MIDDLEWARE = [
@@ -127,15 +128,39 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'  # STATIC_URL means where static files will be served
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # STATIC_ROOT means where static files will be collected. Collectstatic komutu ile static dosyaları toplar. Deploy ederken kullanılır.
-
-MEDIA_URL = '/media/'  # MEDIA_URL means where media files will be served
-MEDIA_ROOT = BASE_DIR / 'media'  # MEDIA_ROOT means where media files will be collected
-
 STATICFILES_DIRS = [BASE_DIR / 'static']  # STATICFILES_DIRS means where static files will be collected
 
+if DEBUG:  # development mode
+    STATIC_URL = '/static/'  # STATIC_URL means where static files will be served
+    STATIC_ROOT = BASE_DIR / 'staticfiles'  # STATIC_ROOT means where static files will be collected. Collectstatic komutu ile static dosyaları toplar. Deploy ederken kullanılır.
+
+    MEDIA_URL = '/media/'  # MEDIA_URL means where media files will be served
+    MEDIA_ROOT = BASE_DIR / 'media'  # MEDIA_ROOT means where media files will be collected
+
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+else:  # production mode
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+
+    DEFAULT_FILE_STORAGE = 'resume_app.custom_storages.MediaStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'  # This is a third party library. This library is used for AWS S3. STATICFILES_STORAGE means where static files will be collected
+
+    AWS_DEFAULT_ACL = 'public-read'  # AWS_DEFAULT_ACL means which permission will be used for AWS S3. Public-read means everyone can read this files. Static files are public files.
+    AWS_S3_BUCKET_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000'
+    }
+
+    STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'  # bütün yapılan yükleme işlemleri bu url üzerinden yapılır.
+    STATIC_ROOT = STATIC_URL
+
+    MEDIA_LOCATION = 'media'
+
+
 DEFAULT_PNG = STATIC_URL + 'default.png'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
