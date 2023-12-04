@@ -157,6 +157,8 @@ else:  # production mode
     STATIC_ROOT = STATIC_URL
 
     MEDIA_LOCATION = 'media'
+    DOCUMENT_LOCATION = MEDIA_LOCATION + '/documents'
+    IMAGE_SETTING_LOCATION = MEDIA_LOCATION + '/image_settings'
 
 
 DEFAULT_PNG = STATIC_URL + 'default.png'

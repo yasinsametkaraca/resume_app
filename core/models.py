@@ -1,4 +1,5 @@
 from django.db import models
+from resume_app.custom_storages import DocumentStorage, ImageSettingStorage
 
 
 class AbstractBaseModel(models.Model):
@@ -26,7 +27,7 @@ class GeneralSetting(AbstractBaseModel):
 class ImageSetting(AbstractBaseModel):
     name = models.CharField(default='', max_length=250, blank=True, help_text='Name of the setting', verbose_name='Name')
     description = models.CharField(default='', max_length=250, blank=True, verbose_name='Description')
-    file = models.ImageField(default='', blank=True, null=True, verbose_name='Image', upload_to='images/')
+    file = models.ImageField(default='', blank=True, null=True, verbose_name='Image', storage=ImageSettingStorage())
 
     def __str__(self):
         return f'Image Setting: {self.name}'
@@ -39,7 +40,7 @@ class ImageSetting(AbstractBaseModel):
 
 class Document(AbstractBaseModel):  # This model is used to store documents. For example, CV. Slug means the last part of the URL. For example, "https://www.example.com/blog/this-is-a-slug". In this case, "this-is-a-slug" is the slug.
     slug = models.SlugField(default='', max_length=250, blank=True, help_text='Slug of the document', verbose_name='Slug')  # SlugField is used to store slugs. Slugs are used to create SEO friendly URLs.
-    file = models.FileField(default='', blank=True, verbose_name='Document', upload_to='documents/')  # This field is used to store the file of the document. For example, "CV.pdf".
+    file = models.FileField(default='', blank=True, verbose_name='Document', storage=DocumentStorage())  # This field is used to store the file of the document. For example, "CV.pdf".
     button_text = models.CharField(default='', max_length=250, blank=True, verbose_name='Button Text')  # This field is used to store the text of the button. For example, "Download CV".
     show_on_page = models.BooleanField(default=True, verbose_name='Show On Menu')  # This field is used to determine whether to show the document on the page or not.
 
